@@ -22,19 +22,13 @@ class MainMenu extends Component {  constructor(props){
           <Collapse isOpen={!this.state.collapsed} navbar>      
             <Nav navbar>
               <NavItem>
-                <NavLink tag={Link} to="/">Campaigns</NavLink>
+                <NavLink tag={Link} to="/Reward-Campaigns">Campaigns</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/">Accounts</NavLink>
+                <NavLink tag={Link} to="/Reward-Accounts/Refill-Points">Refill Points</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/">Transactions</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to="/">Add Points</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to="/">Spend Points</NavLink>
+                <NavLink tag={Link} to="/Transactions">Transactions</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

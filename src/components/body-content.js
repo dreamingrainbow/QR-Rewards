@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Card, CardHeader,  CardTitle, CardSubtitle, CardText, CardFooter, Jumbotron } from 'reactstrap';
+import { Container, Row, Col, Card, CardHeader, UncontrolledCarousel, CardTitle, CardSubtitle, CardText, CardFooter, Jumbotron } from 'reactstrap';
 class BodyContent extends Component {
     render() {
         return (
-            [<Container fluid className="text-center bg-secondary" key={`top_section`}>
+            [
+                <UncontrolledCarousel key={`main_carousel`} items={[{
+                    altText: 'Slide 1',
+                    caption: 'Slide 1',
+                    header: 'Slide 1 Header', 
+                    src:'//placehold.it/800x300?text=Slide 1'},
+                    {
+                        altText: 'Slide 2',
+                        caption: 'Slide 2',
+                        header: 'Slide 2 Header', 
+                        src:'//placehold.it/800x300?text=Slide 2'},
+                    {
+                    altText: 'Slide 3',
+                    caption: 'Slide 3',
+                    header: 'Slide 3 Header', 
+                    src:'//placehold.it/800x300?text=Slide 3'}]} />,    
+            <Container fluid className="text-center bg-secondary" key={`top_section`}>
                 <section>
                     <Row className="text-white">
                         <Col>

@@ -8,22 +8,22 @@ class Sidebar extends Component {
           <NavbarBrand tag={Link} to="/" className="text-primary">QR Rewards</NavbarBrand>
           <Nav navbar className="col-12">
             <NavItem >
-              <NavLink tag={Link} to="/">Reward Campaigns<div className="align-self-center"></div></NavLink>
+              <NavLink tag={Link} to="/Reward-Campaigns"><i className="img-thumbnail fa fa-book text-primary"></i> Campaigns<div className="align-self-center"></div></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/" >Reward Accounts<div className="align-self-center"></div></NavLink>
+              <NavLink tag={Link} to="/Reward-Accounts" ><i className="img-thumbnail fa fa-ticket text-primary"></i> Accounts<div className="align-self-center"></div></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/" >Account Transactions<div className="align-self-center"></div></NavLink>
+              <NavLink tag={Link} to="/Transactions" ><i className="img-thumbnail fa fa-comments text-primary"></i> Transactions<div className="align-self-center"></div></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/" >Create Reward Account<div className="align-self-center"></div></NavLink>
+              <NavLink tag={Link} to="/Reward-Campaigns/Manage/Create" ><i className="img-thumbnail fa fa-address-card text-primary"></i> Create Campaign<div className="align-self-center"></div></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/" >Add Reward Points<div className="align-self-center"></div></NavLink>
+              <NavLink tag={Link} to="/Reward-Accounts/Refill-Points" ><i className="img-thumbnail fa fa-cart-plus text-primary"></i> Refill Reward Points<div className="align-self-center"></div></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/" >Spend Reward Points<div className="align-self-center"></div></NavLink>
+              <NavLink tag={Link} to="/Reward-Accounts/Spend-Points" ><i className="img-thumbnail fa fa-credit-card text-primary"></i> Spend Reward Points<div className="align-self-center"></div></NavLink>
             </NavItem>
           </Nav>
         </Navbar>

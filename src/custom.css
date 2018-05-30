@@ -8,10 +8,10 @@ a:hover.nav-link {
 
 a:hover.nav-link > div {
     height : 13px;
-    width : 90%;
-    border-bottom : 3px #007bff solid;
-    border-left : 1px #007bff solid;
-    border-bottom-right-radius : 70%;
-    margin-left : -5px;
-    margin-top : -10px;
+    width : 100%;
+    border-bottom : 3px #007bffbe solid;
+    border-left : 1px #007bffbe solid;
+    border-bottom-right-radius : 25%;
+    margin-left : -4px;
+    margin-top : -8px;
 }
