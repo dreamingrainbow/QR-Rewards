@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 class Footer extends Component {
   render() {
@@ -33,32 +35,32 @@ class Footer extends Component {
                     <h6 className="text-uppercase font-weight-bold">Products</h6>
                     <hr className="purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{width: '60px'}} />
                     <p>
-                        <a href="#!">Register</a>
+                        <Link to="/Register">Register</Link>
                     </p>
                     <p>
-                        <a href="#!">Sign-In</a>
+                        <Link to="/Reward-Campaigns">Create A Campaign</Link>
                     </p>
                     <p>
                         <a href="#!">Testemonials</a>
                     </p>
                     <p>
-                        <a href="#!">Pricing</a>
+                        <Link to="/Pricing">Pricing</Link>
                     </p>
                 </div>
                 <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                     <h6 className="text-uppercase font-weight-bold">Useful links</h6>
                     <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{width: '60px'}} />
                     <p>
-                        <a href="#!">Sign In | Sign Out</a>
+                        {this.props.authenticated ? <Link to="/Sign-Out">Sign Out</Link> : <Link to="/Sign-in">Sign In</Link>}
                     </p>
                     <p>
-                        <a href="#!">Find Us on Github!</a>
+                        <a href="https://github.com/dreamingrainbow">Find Us on Github!</a>
                     </p>
                     <p>
                         <a href="#!">Developer API</a>
                     </p>
                     <p>
-                        <a href="#!">Help</a>
+                        <Link to="/Help">Help</Link>
                     </p>
                 </div>
                 <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
@@ -80,7 +82,7 @@ class Footer extends Component {
                     © 2018 Copyright <a href="https://dreamingrainbow.com"> dreamingrainbow.com</a>
                 </div>
                 <div className="col-md-4 col-lg-4 col-xl-4">
-                    <span className="float-right"><a href="#!">Privacy</a> | <a href="#!">Terms Of Service</a></span>
+                    <span className="float-right"><Link to="/Privacy-Policy">Privacy</Link> | <Link to="/Terms-Of-Service">Terms Of Service</Link></span>
                 </div>
             </Row>
         </Container>        
@@ -88,5 +90,10 @@ class Footer extends Component {
     );
   }
 }
-
-export default Footer;
+  
+const mapStateToProps = state => {
+    return state;
+};
+  
+export default withRouter(connect(mapStateToProps)(Footer));
+  

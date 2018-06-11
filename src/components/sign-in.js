@@ -29,6 +29,7 @@ class SignIn extends Component {
                                     <CardTitle>Sign - In</CardTitle>
                                 </CardHeader>
                                 <CardBody>
+                                
                                     <FormGroup>
                                         <InputGroup>
                                             <Input type="text" name="Username" placeholder="Username" />
@@ -36,7 +37,7 @@ class SignIn extends Component {
                                     </FormGroup>
                                 </CardBody>
                                 <CardFooter>
-                                    <CardSubtitle><Button tag={Link} to="/Register">Register Now</Button> <Button className="float-right">Sign-In</Button></CardSubtitle>
+                                    <CardSubtitle className="text-center"><Button className="float-left" color="primary" tag={Link} to="/Register" outline>Register Now</Button><Button tag={Link} to="/User-Reset" outline>Forgot Username?</Button><Button color="info" className="float-right" outline>Sign-In</Button></CardSubtitle>
                                 </CardFooter>
                             </Card>
                         </Col>
@@ -47,11 +48,8 @@ class SignIn extends Component {
     }
 }
 
-
 const mapStateToProps = state => {
-  return {
-    authenticated: state.auth.authenticated || false
-  };
+  return state;
 };
 
 export default withRouter(connect(mapStateToProps)(SignIn));

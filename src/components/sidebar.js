@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Nav, Navbar, NavbarBrand, NavLink, NavItem } from 'reactstrap';
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
+import { 
+  Nav, 
+  Navbar, 
+  NavbarBrand, 
+  NavLink, 
+  NavItem
+} from 'reactstrap';
 class Sidebar extends Component {
   render() {
     return (
-      <Navbar fixed="top" color="light" className="col-md-2">
+      <Navbar fixed="top" color="light" className="col-md-2 pr-0">
           <NavbarBrand tag={Link} to="/" className="text-primary">QR Rewards</NavbarBrand>
           <Nav navbar className="col-12">
             <NavItem >
@@ -31,4 +38,8 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default withRouter(connect(mapStateToProps)(Sidebar));

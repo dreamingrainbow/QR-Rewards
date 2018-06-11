@@ -1,5 +1,21 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Card, CardHeader, UncontrolledCarousel, CardTitle, CardSubtitle, CardText, CardFooter, Jumbotron } from 'reactstrap';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import { 
+    Container, 
+    Row, 
+    Col, 
+    Card,
+    CardHeader, 
+    UncontrolledCarousel, 
+    CardTitle, 
+    CardSubtitle, 
+    CardText, 
+    CardFooter, 
+    Jumbotron
+} from 'reactstrap';
+
 class BodyContent extends Component {
     render() {
         return (
@@ -182,5 +198,9 @@ class BodyContent extends Component {
         );
     }
 }
-
-export default BodyContent;
+  
+const mapStateToProps = state => {
+    return state;
+};
+  
+export default withRouter(connect(mapStateToProps)(BodyContent));

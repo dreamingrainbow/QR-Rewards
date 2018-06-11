@@ -8,14 +8,19 @@ import BodyContent from './components/body-content';
 import Footer from './components/footer';
 import RequireAuth from './components/RequireAuth';
 import SignIn from './components/sign-in';
+import RegisterUser from './components/register-user';
+import PrivacyPolicy from './components/privacy-policy';
+import TermsOfService from './components/terms-of-service';
+import Help from './components/help';
+import Pricing from './components/pricing';
 import { Container, Row, Col, UncontrolledAlert } from 'reactstrap';
 class App extends Component {
   constructor(props) {
       super(props);
-      document.title = [this.props.history.location.pathname.substr(1) , ' | ' , 'QR Rewards'].join(' ');
+      document.title = 'QR Rewards'
   }
   breadcrumbLocation(){
-    return <Link to={this.props.location.pathname}>Other</Link>;
+    return '';//<Link to={this.props.location.pathname}>Other</Link>;
   }
   render() {
     return (
@@ -35,13 +40,13 @@ class App extends Component {
             <Switch>
               <Route path="/" component={BodyContent} exact />
               <Route path="/Sign-In" component={SignIn}  exact/>
-              <Route path="/Register" component={BodyContent} exact/>
+              <Route path="/Register" component={RegisterUser} exact/>
               <Route path="/Sign-Out" component={BodyContent} exact/>
-              <Route path="/Help" component={BodyContent} exact/>
+              <Route path="/Help" component={Help} exact/>
               <Route path="/Testemonials" component={BodyContent} exact/>
-              <Route path="/Pricing" component={BodyContent} exact/>
-              <Route path="/Privacy-Policy" component={BodyContent} exact/>
-              <Route path="/Terms-Of-Service" component={BodyContent} exact/>
+              <Route path="/Pricing" component={Pricing} exact/>
+              <Route path="/Privacy-Policy" component={PrivacyPolicy} exact/>
+              <Route path="/Terms-Of-Service" component={TermsOfService} exact/>
               <Route path="/Developer/API" component={BodyContent} exact/>                
               <Route path="/Reward-Campaigns" component={RequireAuth(BodyContent)} exact/>
               <Route path="/Reward-Campaigns/Manage/:campaign" component={RequireAuth(BodyContent)} exact/>
@@ -62,9 +67,7 @@ class App extends Component {
 
 
 const mapStateToProps = state => {
-  return {
-    authenticated: state.auth.authenticated || false
-  };
+  return state;
 };
 
 export default withRouter(connect(mapStateToProps)(App));

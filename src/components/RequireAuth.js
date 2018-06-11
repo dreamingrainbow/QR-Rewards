@@ -4,26 +4,20 @@ import { connect } from 'react-redux';
 export default ComposedComponent => {
   class RequireAuthentication extends Component {
     componentWillMount() {
-      if (!this.props.authenticated) {
+      if (!this.props.authentication.authenticated) {
         this.props.history.push('/Sign-In');
       }
     }
 
     render() {
-      return (
-        <div>
-          {this.props.authenticated ? (
+      return (this.props.authentication.authenticated ? (
             <ComposedComponent {...this.props} />
-          ) : null}
-        </div>
-      );
+          ) : null);
     }
   }
 
   const mapStateToProps = state => {
-    return {
-      authenticated: state.auth.authenticated
-    };
+    return state;
   };
 
   return connect(mapStateToProps)(RequireAuthentication);

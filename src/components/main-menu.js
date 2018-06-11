@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
 import { Nav, Navbar, NavbarBrand, NavLink, NavItem, Collapse, NavbarToggler } from 'reactstrap';
 class MainMenu extends Component {  constructor(props){
   super(props);
@@ -37,4 +38,8 @@ class MainMenu extends Component {  constructor(props){
   }
 }
 
-export default MainMenu;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default withRouter(connect(mapStateToProps)(MainMenu));

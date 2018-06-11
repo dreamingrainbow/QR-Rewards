@@ -1,18 +1,20 @@
 import {
+    AUTHENTICATION_PENDING,
     USER_AUTHENTICATED,
     USER_UNAUTHENTICATED,
     AUTHENTICATION_ERROR
   } from '../actions';
   
-  export default (auth = {}, action) => {
+  export default (auth = { isAuthenticated : false }, action) => {
     switch (action.type) {
       case USER_AUTHENTICATED:
-        return { ...auth, authenticated: true, token: action.payload};
+        return { isAuthenticated : action.payload.authenticated, username : action.payload.username, token : action.payload.token};
       case USER_UNAUTHENTICATED:
-        return { ...auth, authenticated: false, token: undefined };
+        return { isAuthenticated : false, token : undefined };
       case AUTHENTICATION_ERROR:
-        return { ...auth, error: action.payload, token: undefined };
+        return { error : action.payload, isAuthenticated : false, token : undefined };
+      case AUTHENTICATION_PENDING:
       default:
-        return { ...auth };
+        return auth;
     }
   };

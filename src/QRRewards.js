@@ -1,22 +1,24 @@
 var NodeRSA = require('node-rsa');
 var qrCode = require('qrcode-npm');
+var { hashSync } = require('bcryptjs');
 var fileDownload = require('js-file-download');
 
 class QR_Rewards {
     constructor() {
         this.key = new NodeRSA();
+        return this;
     }
-
+    
     generateKeyPair() {
         this.key.generateKeyPair(512);
         return this;
     }
 
     setPublicKey(key) {
-        const key_1 = new NodeRSA();
-        key_1.importKey(key, 'pkcs8-public-pem');
-        if(key_1.isPublic()) {
-            this.key = key_1;
+        const _key = new NodeRSA();
+        _key.importKey(key, 'pkcs8-public-pem');
+        if(_key.isPublic()) {
+            this.key = _key;
         }
         return this;
     }
@@ -25,13 +27,9 @@ class QR_Rewards {
         return isPublic ? this.key.exportKey('pkcs8-public-pem').split('\n') : this.key.exportKey('pkcs8-private-pem').split('\n');
     }
 
-    generateQRCode(isPublic = true) {
-        if(isPublic) return this.exportKey(isPublic);
-    }
-
     generateQRImage(isPublic = true ) {
         var qr = qrCode.qrcode(8, 'M');
-        let keyCode = this.generateQRCode(isPublic);
+        let keyCode = this.exportKey(isPublic);
         keyCode.shift();
         keyCode.pop();
         const str = keyCode.join('');
@@ -66,10 +64,31 @@ class QR_Rewards {
     downloadTag(isPublic = true) {
         const qrImgBase64 = this.extractBase64(isPublic);
         const ext = qrImgBase64.split(';')[0].match(/jpeg|png|gif/)[0];
-        // strip off the data: url prefix to get just the base64-encoded bytes
         const data = qrImgBase64.replace(/^data:image\/\w+;base64,/, "");
         const buf = new Buffer(data, 'base64');
         fileDownload(buf, 'image.' + ext);
+    }
+
+    verify(data, packet = {}) {
+        const trx = {
+            address : data.address,
+            username : data.username,
+            hash : data.hash,
+            created : data.created
+        }        
+        Object.assign(trx, packet);
+        return this.key.verify(JSON.stringify(trx), new Buffer(data.signature));
+    }
+
+    sign(username, passphrase, packet = {}) {     
+        const trx = {
+            address : this.exportKey(),
+            username            
+        };
+        trx.hash = hashSync(JSON.stringify(passphrase), 10);
+        Object.assign(trx, packet);
+        trx.signature = this.key.sign(JSON.stringify(trx));
+        return trx;
     }
 }
 
